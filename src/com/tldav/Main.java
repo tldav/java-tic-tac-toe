@@ -3,6 +3,8 @@ package com.tldav;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+
+        String sampleGrid = "X O X\nO O O\nX X O";
+        System.out.println(sampleGrid);
     }
 }
