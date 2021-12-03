@@ -1,5 +1,6 @@
 package com.tldav;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -16,6 +17,14 @@ public class Main {
 
         if (input.length() != 9) System.out.println("please enter again");
         if (!input.matches("^[XO_]*$")) System.out.println("wrong");
+
+        String lineOne = input.substring(0, 3);
+        String lineTwo = input.substring(3, 6);
+        String lineThree = input.substring(6, 9);
+        System.out.println("|" + lineOne.replace("", " ") + "|");
+        System.out.println("|" + lineTwo.replace("", " ") + "|");
+        System.out.println("|" + lineThree.replace("", " ") + "|");
+
 
 
     }
