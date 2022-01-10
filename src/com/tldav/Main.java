@@ -99,9 +99,10 @@ public class Main {
                 }
             }
             score = 0;
-        }
 
-        for (int i = 0; i < 3; i++) {
+
+
+
             for (int j = 0; j < 3; j++) {
                 if (gameBoard[j][i].equalsIgnoreCase("x")) {
 
@@ -121,38 +122,67 @@ public class Main {
             score = 0;
         }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                boolean diagCheck = i == j || (i % 2 == 0 && j % 2 == 0);
-                System.out.println(diagCheck);
-                if (gameBoard[i][j].equalsIgnoreCase("x")) {
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                if (gameBoard[j][i].equalsIgnoreCase("x")) {
+//
+//                    score += 88;
+//                    if (score == 264) {
+//                        xWins = true;
+//                    }
+//                }
+//                if (gameBoard[j][i].equalsIgnoreCase("o")) {
+//
+//                    score += 79;
+//                    if (score == 237) {
+//                        oWins = true;
+//                    }
+//                }
+//            }
+//            score = 0;
+//        }
 
-                    if (diagCheck) {
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                boolean diagCheck = i == j || (i % 2 == 0 && j % 2 == 0);
+//                System.out.println(diagCheck);
+//                if (gameBoard[i][j].equalsIgnoreCase("x")) {
+//
+//                    if (diagCheck) {
+//
+//                        score += 88;
+//                        if (score == 264) {
+//                            xWins = true;
+//                        }
+//                    }
+//
+//                }
+//                if (gameBoard[i][j].equalsIgnoreCase("o")) {
+//
+//                    if (diagCheck) {
+//
+//                        score += 79;
+//                        if (score == 237) {
+//                            oWins = true;
+//                        }
+//                    }
+//                }
+//            }
+//            System.out.println("THE SCORE IS WRONG: " + score);
+//            score = 0;
+//        }
 
-                        score += 88;
-                        if (score == 264) {
-                            xWins = true;
-                        }
-                    }
+        String a = gameBoard[0][0];
 
-                }
-                if (gameBoard[i][j].equalsIgnoreCase("o")) {
+        char c = gameBoard[0][2].charAt(0);
+        char e = gameBoard[1][1].charAt(0);
+        char g = gameBoard[2][0].charAt(0);
+        char i = gameBoard[2][2].charAt(0);
 
-                    if (diagCheck) {
-
-                        score += 79;
-                        if (score == 237) {
-                            oWins = true;
-                        }
-                    }
-                }
-            }
-            System.out.println("THE SCORE IS WRONG: " + score);
-            score = 0;
-        }
 
         System.out.println("does X win?: " + xWins);
         System.out.println("does O win?: " + oWins);
+
 
         if (Math.abs(xCount - oCount) > 1 || (xWins && oWins)) {
             isImpossible = true;
@@ -170,30 +200,11 @@ public class Main {
         System.out.println("_ count: " + _Count);
 
 
-//        char a = gameArray[0][0].charAt(0);
-//        char b = gameArray[0][1].charAt(0);
-//        char c = gameArray[0][2].charAt(0);
-//        char d = gameArray[1][0].charAt(0);
-//        char e = gameArray[1][1].charAt(0);
-//        char f = gameArray[1][2].charAt(0);
-//        char g = gameArray[2][0].charAt(0);
-//        char h = gameArray[2][1].charAt(0);
-//        char i = gameArray[2][2].charAt(0);
-//
-//        int row1 = a + b + c;
-//        int row2 = d + e + f;
-//        int row3 = g + h + i;
-//
-//        int col1 = a + d + g;
-//        int col2 = b + e + h;
-//        int col3 = c + f + i;
+
 //
 //        int diag1 = a + e + i;
 //        int diag2 = c + e + g;
-//
-//        System.out.println(a + b + c);
-//        System.out.println(d + e + f);
-//        System.out.println(g + h + i);
+
 
 
     }
