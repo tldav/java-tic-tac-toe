@@ -53,79 +53,43 @@ public class Main {
 //            break;
 //        }
 
-        String[][] gameBoard = new String[3][3];
-
-        while (true) {
-            System.out.print("Enter cells: ");
-            String input = scanner.nextLine().toUpperCase();
-
-            if (input.length() != 9) {
-                System.out.println("Please enter 9 characters consisting of _, X, O.");
-                continue;
-            }
-            if (!input.matches("^[XO_]*$")) {
-                System.out.println("Valid characters: _, X, O. Do not enter spaces");
-                continue;
-            }
-
-            String[] inputArray = input.split("");
-            int count = 0;
-
-            for (int i = 0; i < 3; i++) {
-                System.out.println(count);
-                for (int j = 0; j < 3; j++) {
-                    gameBoard[i][j] = inputArray[count++];
-                }
-            }
-            break;
-        }
-
-        System.out.println(Arrays.deepToString(gameBoard));
-
         // *********************** Part 3 *************************
 
-//
-//        String[][] gameArray = new String[3][3];
-//
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                gameArray[i][j] = scanner.nextLine().toUpperCase();
-//            }
-//        }
-//
-//        System.out.println(Arrays.deepToString(gameArray));
-//
-//        System.out.println("---------");
-//        for (String[] element : gameArray) {
-//            System.out.println("| " + Arrays.toString(element)
-//                    .replace("[", "")
-//                    .replace(",", "")
-//                    .replace("]", "") + " |");
-//        }
-//        System.out.println("---------");
-//
-//        int xCount = 0;
-//        int oCount = 0;
-//        int _Count = 0;
-//
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                if (gameArray[i][j].equalsIgnoreCase("x")) {
-//                    xCount++;
-//                }
-//                if (gameArray[i][j].equalsIgnoreCase("o")) {
-//                    oCount++;
-//                }
-//                if (gameArray[i][j].equalsIgnoreCase("_")) {
-//                    _Count++;
-//                }
-//            }
-//        }
-//
-//
-//        System.out.println("X count: " + xCount);
-//        System.out.println("O count: " + oCount);
-//        System.out.println("_ count: " + _Count);
+
+        String[][] gameBoard = generateGameBoard();
+
+//        System.out.println(Arrays.deepToString(gameBoard));
+
+        System.out.println("---------");
+        for (String[] element : gameBoard) {
+            System.out.println("| " + Arrays.toString(element)
+                    .replace("[", "")
+                    .replace(",", "")
+                    .replace("]", "") + " |");
+        }
+        System.out.println("---------");
+
+        int xCount = 0;
+        int oCount = 0;
+        int _Count = 0;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameBoard[i][j].equalsIgnoreCase("x")) {
+                    xCount++;
+                }
+                if (gameBoard[i][j].equalsIgnoreCase("o")) {
+                    oCount++;
+                }
+                if (gameBoard[i][j].equalsIgnoreCase("_")) {
+                    _Count++;
+                }
+            }
+        }
+
+        System.out.println("X count: " + xCount);
+        System.out.println("O count: " + oCount);
+        System.out.println("_ count: " + _Count);
 
 
 //        char a = gameArray[0][0].charAt(0);
@@ -211,7 +175,36 @@ public class Main {
     }
 
     public static boolean isWinner(char player, char[][] gameBoard) {
-        char poo = gameBoard[0][0];
+        char coo = gameBoard[0][0];
         return true;
+    }
+
+    public static String[][] generateGameBoard() {
+        String[][] gameBoard = new String[3][3];
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter cells: ");
+            String input = scanner.nextLine().toUpperCase();
+
+            if (input.length() != 9) {
+                System.out.println("Please enter 9 characters consisting of _, X, O.");
+                continue;
+            }
+            if (!input.matches("^[XO_]*$")) {
+                System.out.println("Valid characters: _, X, O. Do not enter spaces");
+                continue;
+            }
+
+            String[] inputArray = input.split("");
+            int count = 0;
+
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    gameBoard[i][j] = inputArray[count++];
+                }
+            }
+            break;
+        }
+        return gameBoard;
     }
 }
