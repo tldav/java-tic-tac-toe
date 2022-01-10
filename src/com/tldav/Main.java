@@ -10,7 +10,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
 
-
 //        String sampleGrid = "X O X\nO O O\nX X O";
 //        System.out.println(sampleGrid);
 
@@ -28,9 +27,7 @@ public class Main {
 //        System.out.println("---------");
 
 
-
         // ************************* Part 2 ***********************
-
 
 
 //        while (true) {
@@ -56,65 +53,124 @@ public class Main {
 //            break;
 //        }
 
+        String[][] gameBoard = new String[3][3];
 
+        while (true) {
+            System.out.print("Enter cells: ");
+            String input = scanner.nextLine().toUpperCase();
+
+            if (input.length() != 9) {
+                System.out.println("Please enter 9 characters consisting of _, X, O.");
+                continue;
+            }
+            if (!input.matches("^[XO_]*$")) {
+                System.out.println("Valid characters: _, X, O. Do not enter spaces");
+                continue;
+            }
+
+            String[] inputArray = input.split("");
+            int count = 0;
+
+            for (int i = 0; i < 3; i++) {
+                System.out.println(count);
+                for (int j = 0; j < 3; j++) {
+                    gameBoard[i][j] = inputArray[count++];
+                }
+            }
+            break;
+        }
+
+        System.out.println(Arrays.deepToString(gameBoard));
 
         // *********************** Part 3 *************************
 
-
-
-        String[][] gameArray = new String[3][3];
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                gameArray[i][j] = scanner.next().toUpperCase();
-            }
-        }
-
-        System.out.println(Arrays.deepToString(gameArray));
-
-        for (String[] element : gameArray) {
-            System.out.println(Arrays.toString(element)
-                    .replace("[", "")
-                    .replace(",", "")
-                    .replace("]", ""));
-        }
-
-        char a = gameArray[0][0].charAt(0);
-        char b = gameArray[0][1].charAt(0);
-        char c = gameArray[0][2].charAt(0);
-        char d = gameArray[1][0].charAt(0);
-        char e = gameArray[1][1].charAt(0);
-        char f = gameArray[1][2].charAt(0);
-        char g = gameArray[2][0].charAt(0);
-        char h = gameArray[2][1].charAt(0);
-        char i = gameArray[2][2].charAt(0);
-
-        int row1 = a + b + c;
-        int row2 = d + e + f;
-        int row3 = g + h + i;
-
-        int col1 = a + d + g;
-        int col2 = b + e + h;
-        int col3 = c + f + i;
-
-        int diag1 = a + e + i;
-        int diag2 = c + e + g;
-
-        System.out.println(a + b + c);
-        System.out.println(d + e + f);
-        System.out.println(g + h + i);
-
-
-
-
-
-
-
-//        String str = "clutso";
 //
-//        for (int i = 0; i < str.length(); i++) {
-//            System.out.println(i);
+//        String[][] gameArray = new String[3][3];
+//
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                gameArray[i][j] = scanner.nextLine().toUpperCase();
+//            }
 //        }
+//
+//        System.out.println(Arrays.deepToString(gameArray));
+//
+//        System.out.println("---------");
+//        for (String[] element : gameArray) {
+//            System.out.println("| " + Arrays.toString(element)
+//                    .replace("[", "")
+//                    .replace(",", "")
+//                    .replace("]", "") + " |");
+//        }
+//        System.out.println("---------");
+//
+//        int xCount = 0;
+//        int oCount = 0;
+//        int _Count = 0;
+//
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                if (gameArray[i][j].equalsIgnoreCase("x")) {
+//                    xCount++;
+//                }
+//                if (gameArray[i][j].equalsIgnoreCase("o")) {
+//                    oCount++;
+//                }
+//                if (gameArray[i][j].equalsIgnoreCase("_")) {
+//                    _Count++;
+//                }
+//            }
+//        }
+//
+//
+//        System.out.println("X count: " + xCount);
+//        System.out.println("O count: " + oCount);
+//        System.out.println("_ count: " + _Count);
+
+
+//        char a = gameArray[0][0].charAt(0);
+//        char b = gameArray[0][1].charAt(0);
+//        char c = gameArray[0][2].charAt(0);
+//        char d = gameArray[1][0].charAt(0);
+//        char e = gameArray[1][1].charAt(0);
+//        char f = gameArray[1][2].charAt(0);
+//        char g = gameArray[2][0].charAt(0);
+//        char h = gameArray[2][1].charAt(0);
+//        char i = gameArray[2][2].charAt(0);
+//
+//        int row1 = a + b + c;
+//        int row2 = d + e + f;
+//        int row3 = g + h + i;
+//
+//        int col1 = a + d + g;
+//        int col2 = b + e + h;
+//        int col3 = c + f + i;
+//
+//        int diag1 = a + e + i;
+//        int diag2 = c + e + g;
+//
+//        System.out.println(a + b + c);
+//        System.out.println(d + e + f);
+//        System.out.println(g + h + i);
+
+
+        // *attempt to check for wins iteratively*
+//        for (int i = 0; i < gameArray.length; i++) {
+//            int charTotal = 0;
+//            // loop goes through rows.
+//            for (int j = 0; j < gameArray[i].length; j++) {
+//                System.out.println(gameArray[i][j]);
+//                charTotal += gameArray[i][j].charAt(0);
+//
+//            }
+//
+//            // loop goes through columns
+////            for (int j = 0; j < gameArray[i].length; j++) {
+////                System.out.println(gameArray[j][i]);
+////            }
+//            System.out.println(charTotal);
+//        }
+
 
 //        final int size = scanner.nextInt();
 //
@@ -124,7 +180,6 @@ public class Main {
 //            }
 //            System.out.println();
 //        }
-
 
 
         // turn prior solution into a 2D array. done
@@ -145,12 +200,18 @@ public class Main {
         //  'O' + 'O' + 'O' = 237
 
 
-        //  check for impossible is priority 2. end if not win but is impossible.
+        //  check for impossible is priority 2 - two winners OR too many of one symbol (by > 1)
         //      impossible -> if ((Xs - Os) > 1) {impossible} will need Math.abs() for this
 
-        //      check for draw is priority 3. end if not win and not impossible but is draw.
+        //      check for draw is priority 3 - no one wins; full board without 3 in a row.
         //          draw -> if (Xs + Os == 9) {draw}
 
-        //              if none of these are the case, the state is game not finished.
+        //              if none of these are the case, the state is game not finished
+        //              (empty game spaces)
+    }
+
+    public static boolean isWinner(char player, char[][] gameBoard) {
+        char poo = gameBoard[0][0];
+        return true;
     }
 }
