@@ -1,7 +1,6 @@
 package com.tldav;
 
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +8,7 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // ************************* Part 1 ***********************
 
 //        String sampleGrid = "X O X\nO O O\nX X O";
 //        System.out.println(sampleGrid);
@@ -28,7 +28,6 @@ public class Main {
 
 
         // ************************* Part 2 ***********************
-
 
 //        while (true) {
 //            System.out.print("Enter cells: ");
@@ -55,10 +54,7 @@ public class Main {
 
         // *********************** Part 3 *************************
 
-
         String[][] gameBoard = generateGameBoard();
-
-//        System.out.println(Arrays.deepToString(gameBoard));
 
         System.out.println("---------");
         for (String[] element : gameBoard) {
@@ -72,19 +68,101 @@ public class Main {
         int xCount = 0;
         int oCount = 0;
         int _Count = 0;
+//        int xScore = 0;
+        // x * 1 = 88;
+//        int oScore = 0;
+        // o * 1 = 79;
+        int score = 0;
+        boolean xWins = false;
+        boolean oWins = false;
+        boolean isImpossible = false;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 if (gameBoard[i][j].equalsIgnoreCase("x")) {
                     xCount++;
+                    score += 88;
+                    if (score == 264) {
+                        xWins = true;
+                    }
                 }
                 if (gameBoard[i][j].equalsIgnoreCase("o")) {
                     oCount++;
+                    score += 79;
+                    if (score == 237) {
+                        oWins = true;
+                    }
                 }
-                if (gameBoard[i][j].equalsIgnoreCase("_")) {
+                if (gameBoard[i][j].equalsIgnoreCase("_") ||
+                        gameBoard[i][j].equalsIgnoreCase(" ")) {
                     _Count++;
                 }
             }
+            score = 0;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (gameBoard[j][i].equalsIgnoreCase("x")) {
+
+                    score += 88;
+                    if (score == 264) {
+                        xWins = true;
+                    }
+                }
+                if (gameBoard[j][i].equalsIgnoreCase("o")) {
+
+                    score += 79;
+                    if (score == 237) {
+                        oWins = true;
+                    }
+                }
+            }
+            score = 0;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                boolean diagCheck = i == j || (i % 2 == 0 && j % 2 == 0);
+                System.out.println(diagCheck);
+                if (gameBoard[i][j].equalsIgnoreCase("x")) {
+
+                    if (diagCheck) {
+
+                        score += 88;
+                        if (score == 264) {
+                            xWins = true;
+                        }
+                    }
+
+                }
+                if (gameBoard[i][j].equalsIgnoreCase("o")) {
+
+                    if (diagCheck) {
+
+                        score += 79;
+                        if (score == 237) {
+                            oWins = true;
+                        }
+                    }
+                }
+            }
+            System.out.println("THE SCORE IS WRONG: " + score);
+            score = 0;
+        }
+
+        System.out.println("does X win?: " + xWins);
+        System.out.println("does O win?: " + oWins);
+
+        if (Math.abs(xCount - oCount) > 1 || (xWins && oWins)) {
+            isImpossible = true;
+            System.out.println("impossible");
+        } else if (xWins && !oWins && !isImpossible) {
+            System.out.println("X wins");
+        } else if (oWins && !xWins && !isImpossible) {
+            System.out.println("O wins");
+        } else {
+            System.out.println("Game not finished");
         }
 
         System.out.println("X count: " + xCount);
@@ -118,60 +196,6 @@ public class Main {
 //        System.out.println(g + h + i);
 
 
-        // *attempt to check for wins iteratively*
-//        for (int i = 0; i < gameArray.length; i++) {
-//            int charTotal = 0;
-//            // loop goes through rows.
-//            for (int j = 0; j < gameArray[i].length; j++) {
-//                System.out.println(gameArray[i][j]);
-//                charTotal += gameArray[i][j].charAt(0);
-//
-//            }
-//
-//            // loop goes through columns
-////            for (int j = 0; j < gameArray[i].length; j++) {
-////                System.out.println(gameArray[j][i]);
-////            }
-//            System.out.println(charTotal);
-//        }
-
-
-//        final int size = scanner.nextInt();
-//
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                System.out.print(Math.abs(i - j) + " ");
-//            }
-//            System.out.println();
-//        }
-
-
-        // turn prior solution into a 2D array. done
-        // [
-        //   [X, O, _],
-        //   [_, O, _],
-        //   [O, X, X]
-        // ]
-
-        // check for win is priority 1. end if win
-        //  'X' + 'X' + 'X' = 264
-        //  OR
-        //  'O' + 'O' + 'O' = 237
-
-        //  impossible if both win
-        //  'X' + 'X' + 'X' = 264
-        //  AND
-        //  'O' + 'O' + 'O' = 237
-
-
-        //  check for impossible is priority 2 - two winners OR too many of one symbol (by > 1)
-        //      impossible -> if ((Xs - Os) > 1) {impossible} will need Math.abs() for this
-
-        //      check for draw is priority 3 - no one wins; full board without 3 in a row.
-        //          draw -> if (Xs + Os == 9) {draw}
-
-        //              if none of these are the case, the state is game not finished
-        //              (empty game spaces)
     }
 
     public static boolean isWinner(char player, char[][] gameBoard) {
@@ -190,7 +214,7 @@ public class Main {
                 System.out.println("Please enter 9 characters consisting of _, X, O.");
                 continue;
             }
-            if (!input.matches("^[XO_]*$")) {
+            if (!input.matches("^[XO_ ]*$")) {
                 System.out.println("Valid characters: _, X, O. Do not enter spaces");
                 continue;
             }
