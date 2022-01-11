@@ -68,14 +68,32 @@ public class Main {
         int xCount = 0;
         int oCount = 0;
         int _Count = 0;
-//        int xScore = 0;
-        // x * 1 = 88;
-//        int oScore = 0;
-        // o * 1 = 79;
         int score = 0;
         boolean xWins = false;
         boolean oWins = false;
         boolean isImpossible = false;
+
+        if (
+                (gameBoard[0][0].equalsIgnoreCase("x") &&
+                        gameBoard[1][1].equalsIgnoreCase("x") &&
+                        gameBoard[2][2].equalsIgnoreCase("x"))
+                        ||
+                        (gameBoard[0][2].equalsIgnoreCase("x") &&
+                                gameBoard[1][1].equalsIgnoreCase("x") &&
+                                gameBoard[2][0].equalsIgnoreCase("x"))) {
+            xWins = true;
+        }
+
+        if (
+                (gameBoard[0][0].equalsIgnoreCase("o") &&
+                        gameBoard[1][1].equalsIgnoreCase("o") &&
+                        gameBoard[2][2].equalsIgnoreCase("o"))
+                        ||
+                        (gameBoard[0][2].equalsIgnoreCase("o") &&
+                                gameBoard[1][1].equalsIgnoreCase("o") &&
+                                gameBoard[2][0].equalsIgnoreCase("o"))) {
+            oWins = true;
+        }
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -101,8 +119,6 @@ public class Main {
             score = 0;
 
 
-
-
             for (int j = 0; j < 3; j++) {
                 if (gameBoard[j][i].equalsIgnoreCase("x")) {
 
@@ -121,6 +137,8 @@ public class Main {
             }
             score = 0;
         }
+
+
 
 //        for (int i = 0; i < 3; i++) {
 //            for (int j = 0; j < 3; j++) {
@@ -141,43 +159,6 @@ public class Main {
 //            }
 //            score = 0;
 //        }
-
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                boolean diagCheck = i == j || (i % 2 == 0 && j % 2 == 0);
-//                System.out.println(diagCheck);
-//                if (gameBoard[i][j].equalsIgnoreCase("x")) {
-//
-//                    if (diagCheck) {
-//
-//                        score += 88;
-//                        if (score == 264) {
-//                            xWins = true;
-//                        }
-//                    }
-//
-//                }
-//                if (gameBoard[i][j].equalsIgnoreCase("o")) {
-//
-//                    if (diagCheck) {
-//
-//                        score += 79;
-//                        if (score == 237) {
-//                            oWins = true;
-//                        }
-//                    }
-//                }
-//            }
-//            System.out.println("THE SCORE IS WRONG: " + score);
-//            score = 0;
-//        }
-
-        String a = gameBoard[0][0];
-
-        char c = gameBoard[0][2].charAt(0);
-        char e = gameBoard[1][1].charAt(0);
-        char g = gameBoard[2][0].charAt(0);
-        char i = gameBoard[2][2].charAt(0);
 
 
         System.out.println("does X win?: " + xWins);
@@ -200,18 +181,10 @@ public class Main {
         System.out.println("_ count: " + _Count);
 
 
-
-//
 //        int diag1 = a + e + i;
 //        int diag2 = c + e + g;
 
 
-
-    }
-
-    public static boolean isWinner(char player, char[][] gameBoard) {
-        char coo = gameBoard[0][0];
-        return true;
     }
 
     public static String[][] generateGameBoard() {
