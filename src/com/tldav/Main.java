@@ -138,52 +138,17 @@ public class Main {
             score = 0;
         }
 
-
-
-//        for (int i = 0; i < 3; i++) {
-//            for (int j = 0; j < 3; j++) {
-//                if (gameBoard[j][i].equalsIgnoreCase("x")) {
-//
-//                    score += 88;
-//                    if (score == 264) {
-//                        xWins = true;
-//                    }
-//                }
-//                if (gameBoard[j][i].equalsIgnoreCase("o")) {
-//
-//                    score += 79;
-//                    if (score == 237) {
-//                        oWins = true;
-//                    }
-//                }
-//            }
-//            score = 0;
-//        }
-
-
-        System.out.println("does X win?: " + xWins);
-        System.out.println("does O win?: " + oWins);
-
-
         if (Math.abs(xCount - oCount) > 1 || (xWins && oWins)) {
-            isImpossible = true;
-            System.out.println("impossible");
+            System.out.println("Impossible");
         } else if (xWins && !oWins && !isImpossible) {
             System.out.println("X wins");
         } else if (oWins && !xWins && !isImpossible) {
             System.out.println("O wins");
+        } else if (_Count == 0) {
+            System.out.println("Draw");
         } else {
             System.out.println("Game not finished");
         }
-
-        System.out.println("X count: " + xCount);
-        System.out.println("O count: " + oCount);
-        System.out.println("_ count: " + _Count);
-
-
-//        int diag1 = a + e + i;
-//        int diag2 = c + e + g;
-
 
     }
 
